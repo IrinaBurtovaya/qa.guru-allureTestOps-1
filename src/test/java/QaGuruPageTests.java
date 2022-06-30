@@ -1,5 +1,7 @@
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.AllureId;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -11,7 +13,9 @@ public class QaGuruPageTests extends TestBase {
     QaGuruPage qaGuruPage = new QaGuruPage();
 
     @Test
+    @AllureId("10817")
     @DisplayName("Тест на открытие главной страницы сайта qa.guru")
+    @Tag("mainPage")
     void mainPageHasBeenOpened() {
         step("Проверяем открытие страницы", () -> {
             qaGuruPage.schoolDescription.shouldHave(Condition.text("Школа инженеров по автоматизации тестирования"));
@@ -19,7 +23,9 @@ public class QaGuruPageTests extends TestBase {
     }
 
     @Test
+    @AllureId("10806")
     @DisplayName("Тест на открытие программы обучения")
+    @Tag("testProgram")
     void scheduleHasBeenOpened() {
         step("Открываем программу обучения", () -> {
             qaGuruPage.openSchedule.click();
@@ -36,7 +42,9 @@ public class QaGuruPageTests extends TestBase {
     }
 
     @Test
+    @AllureId("10818")
     @DisplayName("Тест на проверку перехода в ВК")
+    @Tag("vk")
     void vkTest() {
         step("Кликаем по иконке социальной сети ВК", () -> {
             qaGuruPage.vkIcon.scrollIntoView(true).click();
@@ -50,10 +58,13 @@ public class QaGuruPageTests extends TestBase {
         step("Возвращаемся на исходную страницу", () -> {
             switchTo().window(0);
         });
+
     }
 
     @Test
+    @AllureId("10819")
     @DisplayName("Тест на авторизацию с невалидными кредами")
+    @Tag("wrongCreds")
     void authWithWrongCredentials() {
         step("Открываем страницу авторизации", () -> {
             qaGuruPage.loginButton.click();
@@ -69,10 +80,14 @@ public class QaGuruPageTests extends TestBase {
             qaGuruPage.errorMsg.shouldHave(Condition.text("Неверный формат e-mail"));
             switchTo().window(0);
         });
+
     }
 
     @Test
-    @DisplayName("Тест на авторизацию с валидными кредами") //специально сделано, чтобы тест упал (не добавлены верные креды)
+    @AllureId("10820")
+    @DisplayName("Тест на авторизацию с валидными кредами")
+    @Tag("correctCreds")
+        //специально сделано, чтобы тест упал (не добавлены верные креды)
     void authWithCorrectCredentials() {
         step("Открываем страницу авторизации", () -> {
             qaGuruPage.loginButton.click();
@@ -93,3 +108,4 @@ public class QaGuruPageTests extends TestBase {
         });
     }
 }
+

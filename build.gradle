@@ -8,9 +8,7 @@ repositories {
 }
 
 def allureVersion = "2.17.3",
-    selenideVersion = "6.4.0",
-    junitVersion = "5.8.2",
-    slf4jVersion = "1.7.32"
+    selenideVersion = "6.4.0"
 
 allure {
     report {
@@ -29,11 +27,13 @@ allure {
 
 dependencies {
     testImplementation(
+            "commons-io:commons-io:2.6",
+            "io.qameta.allure:allure-java-commons:2.14.0",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.aeonbits.owner:owner:1.0.4",
-            "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.junit.jupiter:junit-jupiter-api:5.7.2",
+            "org.junit.jupiter:junit-jupiter-engine:5.7.2",
+            "org.junit.jupiter:junit-jupiter-params:5.7.2"
     )
 }
 
